@@ -24,6 +24,10 @@ export class ContactosService {
     return this.httpClient.get(this.resourceUrl, { params: params });
   }
 
+  // get() {
+  //   return this.httpClient.get(this.resourceUrl);
+  // }
+
   post(obj: Contactos) {
     return this.httpClient.post(this.resourceUrl, obj);
   }

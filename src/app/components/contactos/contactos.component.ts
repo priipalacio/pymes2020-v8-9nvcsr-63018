@@ -65,7 +65,7 @@ export class ContactosComponent implements OnInit {
   }
 
   getContactos() {
-    this.contactosService.get.subscribe((datos: Contactos[]) => {
+    this.contactosService.get().subscribe((datos: Contactos[]) => {
       this.Lista = datos;
     });
   }
@@ -75,5 +75,45 @@ export class ContactosComponent implements OnInit {
     this.submitted = false;
     //this.FormReg.markAsPristine();
     this.FormReg.markAsUntouched();
+  }
+
+  Buscar() {
+    this.SinBusquedasRealizadas = false;
+    this.contactosService
+      .get(this.FormFiltro.value.Nombre, this.Pagina)
+      .subscribe((res: any) => {
+        this.Lista = res.Lista;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
+  }
+
+  Grabar() {
+    this.submitted = true;
+    if (this.FormReg.invalid) {
+      return;
+    }
+    const itemCopy = { ...this.FormReg.value };
+    var arrFecha = itemCopy.FechaNacimiento.substr(0, 10).split("/");
+    if (arrFecha.length == 3)
+      itemCopy.FechaNacimiento = new Date(
+        arrFecha[2],
+        arrFecha[1] - 1,
+        arrFecha[0]
+      ).toISOString();
+
+    // agregar post
+    if (itemCopy.IdContacto == 0 || itemCopy.IdContacto == null) {
+      itemCopy.IdContacto = 0;
+      this.contactosService.post(itemCopy).subscribe((res: any) => {
+        this.Volver();
+        this.modalDialogService.Alert("Registro agregado correctamente.");
+        this.Buscar();
+      });
+    } else {
+    }
+  }
+
+    Volver() {
+    this.Accion = "L";
   }
 }
