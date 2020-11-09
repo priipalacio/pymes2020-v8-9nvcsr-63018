@@ -41,7 +41,9 @@ export class ContactosComponent implements OnInit {
 
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
-      Nombre: [""]
+      Nombre: [""],
+      FechaNacimiento: [""],
+      Telefono: [null]
     });
     this.FormReg = this.formBuilder.group({
       IdContacto: [0],
@@ -58,7 +60,7 @@ export class ContactosComponent implements OnInit {
           )
         ]
       ],
-      Telefono: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
+      Telefono: [null, [Validators.required, Validators.pattern("[0-9]{10}")]]
     });
 
     // this.getContactos();
@@ -79,13 +81,12 @@ export class ContactosComponent implements OnInit {
 
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.contactosService
-      .get(this.FormFiltro.value.Nombre, this.Pagina)
-      .subscribe((res: any) => {
-        this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.contactosService.get().subscribe((res: any) => {
+      this.Lista = res.Lista;
+      this.RegistrosTotal = res.RegistrosTotal;
+    });
   }
+  //this.FormFiltro.value.Nombre, this.Pagina
 
   Grabar() {
     this.submitted = true;
