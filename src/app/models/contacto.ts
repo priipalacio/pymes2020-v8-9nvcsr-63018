@@ -3,5 +3,4 @@ export class Contactos {
   Nombre: string;
   FechaNacimiento: string;
   Telefono: number;
-  IdCategoria: number;
 }
