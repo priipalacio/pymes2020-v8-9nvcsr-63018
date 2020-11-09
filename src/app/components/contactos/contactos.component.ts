@@ -61,14 +61,14 @@ export class ContactosComponent implements OnInit {
       Telefono: [null, [Validators.required, Validators.pattern("[0-9]{1,10}")]]
     });
 
-    this.getContactos();
+    // this.getContactos();
   }
 
-  getContactos() {
-    this.contactosService.get().subscribe((datos: Contactos[]) => {
-      this.Lista = datos;
-    });
-  }
+  // getContactos() {
+  //   this.contactosService.get().subscribe((datos: Contactos[]) => {
+  //     this.Lista = datos;
+  //   });
+  // }
   Agregar() {
     this.Accion = "A";
     this.FormReg.reset({ Activo: true });
