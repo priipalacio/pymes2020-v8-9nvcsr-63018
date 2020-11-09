@@ -1,4 +1,4 @@
-<h3>{{Titulo}} <small>{{Acciones[Accion]}}</small></h3>
+<h3>{{Titulo}}<small>{{Acciones[Accion]}}</small></h3>
 
 <form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light" *ngIf="Accion == 'L'">
 	<div class="form-group row">
@@ -6,7 +6,7 @@
             Nombre:
         </label>
 		<div class="col-sm-3">
-			<input type="text" name="Nombre" class="form-control" formControlName="Nombre" maxlength="55"/>
+			<input type="text" name="Nombre" class="form-control" formControlName="Nombre" maxlength="30"/>
         </div>
 		</div>
 		<!-- Botones -->
