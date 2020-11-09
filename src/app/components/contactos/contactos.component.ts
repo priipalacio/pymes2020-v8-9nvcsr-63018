@@ -10,11 +10,11 @@ import { ContactosService } from "../../services/contactos.service";
   styleUrls: ["./contactos.component.css"]
 })
 export class ContactosComponent implements OnInit {
-  Titulo: "Contactos";
-  Acciones: {
-    A: "(Agregar)";
-    C: "(Consultar)";
-    L: "(Listado)";
+  Titulo = "Contactos";
+  Acciones = {
+    A: "(Agregar)",
+    C: "(Consultar)",
+    L: "(Listado)"
   };
   Accion = "L"; //inicia con listado
 
@@ -41,9 +41,7 @@ export class ContactosComponent implements OnInit {
 
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
-      Nombre: [""],
-      FechaNacimiento: [""],
-      Telefono: [null]
+      Nombre: [""]
     });
     this.FormReg = this.formBuilder.group({
       IdContacto: [0],
@@ -81,9 +79,9 @@ export class ContactosComponent implements OnInit {
 
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.contactosService.get().subscribe((res: any) => {
-      this.Lista = res.Lista;
-      this.RegistrosTotal = res.RegistrosTotal;
+    this.contactosService.get().subscribe((res: Contactos[]) => {
+      this.Lista = res;
+      this.RegistrosTotal = res.length;
     });
   }
   //this.FormFiltro.value.Nombre, this.Pagina
