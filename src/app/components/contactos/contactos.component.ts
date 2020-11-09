@@ -113,7 +113,7 @@ export class ContactosComponent implements OnInit {
     }
   }
 
-    Volver() {
+  Volver() {
     this.Accion = "L";
   }
 }
